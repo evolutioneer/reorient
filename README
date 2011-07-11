@@ -1,0 +1,25 @@
+REORIENT
+Ross Smith
+2011-07-11
+
+What It Is
+==============
+Simple, Javascript, Zepto-based mobile orientation change detector
+
+Why I Made It
+==============
+Certain Android phones were firing 'orientationchange' events in an infinite loop at me.
+I needed a "git er dun" solution, so I wrote a very simple Zepto plug-in to do the trick.
+Hack and abuse it to your heart's content.
+
+How To Use
+==============
+1) Use Zepto for your mobile project (zeptojs.com, github.com/madrobby/zepto)
+2) Include dist/reorient.min.js in your HTML after Zepto
+3) Bind your handlers to the reorient event like this: $(window).bind('reorient', function() { ... });
+4) Write your CSS to react to 'body.landscape' and 'body.portrait' selectors, which reorient will update before event triggering
+4) In your DOM ready event, call $.reorient.start() to begin detection
+
+Still Curious?
+==============
+Reorient adds the reorient object to Zepto.  Look at src/reorient.js to see what this object does.
