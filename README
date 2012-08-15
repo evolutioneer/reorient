@@ -2,6 +2,14 @@ REORIENT
 Ross Smith
 2011-07-11
 
+***** Improved by: ******
+Andreas Deuschlinger, Nils Fischer
+2012-08-15
+
+Improvment
+==============
+Using more generic onchange solution, than timer or polling
+
 What It Is
 ==============
 Simple, Javascript, Zepto-based mobile orientation change detector
