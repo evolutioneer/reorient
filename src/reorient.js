@@ -11,30 +11,46 @@
 (function($) {
 
 	var orientation = Math.abs(window.orientation) === 90 ? 'landscape' : 'portrait';
-	var flag = {
-		resize: false,
-		orientationchange: false
-	};
+
+	var flag = flag || ( function() {
+
+		var RESIZE = 1,
+			ORIENTATIONCHANGE = 2,
+			CHECKED = 3;
+
+		return {
+			value: 0,
+			RESIZE: function() {
+				return RESIZE;
+			},
+			ORIENTATIONCHANGE: function() {
+				return ORIENTATIONCHANGE;
+			},
+			CHECKED: function() {
+				return CHECKED;
+			}
+		};
+	})();
+
 	var _win = null;
 
 	var resize = function() {
-		flag.resize = true;
+		flag.value |= flag.RESIZE();
 
-		if( flag.orientationchange === true )
+		if( flag.value & flag.CHECKED() )
 			reorient();
     };
 
     var orientationchange = function() {
-		flag.orientationchange = true;
+		flag.value |= flag.ORIENTATIONCHANGE();
 
-		if( flag.resize === true )
+		if( flag.value & flag.CHECKED() )
 			reorient();
     };
 
     var reorient = function() {
 
-    	flag.resize = false;
-		flag.orientationchange = false;
+    	flag.value = 0;
 
 		var orient = Math.abs(window.orientation) === 90 ? 'landscape' : 'portrait';
 
